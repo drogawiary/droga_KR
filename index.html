@@ -11,44 +11,51 @@
 <style>
 *{box-sizing:border-box;-webkit-text-size-adjust:100%}
 html,body{margin:0;padding:0}
+
 :root{
   --bg:#1b2a49;
   --panel:#22355c;
   --panel-2:#1d2e50;
-  --soft:#223b6d;
+  --ink:#e7ecf6;
   --text:#e7ecf6;
   --muted:#aab3c6;
+  --border:#2e4a7f;
   --accent:#4a8cff;
   --accent-2:#7aa8ff;
   --ring:#6ea8ff33;
-}
-body{
-  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
-  color:var(--text);
-  background:radial-gradient(circle at top,#2c3f6c 0,#1b2a49 55%,#0a1020 100%);
-  padding:16px;
-}
-.wrap{
-  max-width:900px;
-  margin:0 auto;
-  background:linear-gradient(180deg,var(--panel),var(--panel-2));
-  border-radius:20px;
-  box-shadow:0 0 25px #0008;
-  overflow:hidden;
+  --shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-/* baner jak w Różańcu */
+body{
+  font-family:system-ui,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;
+  justify-content:center;
+  padding:16px;
+}
+
+.wrap{
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  max-width:900px;
+  width:100%;
+  padding:16px;
+}
+
+/* baner jak w DW / Różańcu */
 header.book{
   background:linear-gradient(145deg,#0b3d91,#1565c0,#1e88e5);
   color:#fff;
   text-align:center;
   padding:32px 20px;
-  border-radius:20px 20px 0 0;
-  font-size:clamp(28px,5vw,40px);
+  border-radius:14px;
+  margin-bottom:20px;
+  font-size:clamp(32px,5vw,52px);
   font-family:'Playfair Display',serif;
   text-shadow:0 0 8px #fff,0 0 16px #a8c8ff;
-  box-shadow:inset 0 0 10px #ffffff22,0 2px 8px #0002;
-  font-weight:800;
+  box-shadow:inset 0 0 10px #ffffff22;
 }
 header.book small{
   display:block;
@@ -56,84 +63,67 @@ header.book small{
   margin-top:6px;
 }
 
-/* top pasek */
-.topbar{
-  background:linear-gradient(180deg,#22355c 0%,#1b2a49 100%);
-  border-radius:14px;
-  padding:12px 16px;
-  box-shadow:0 0 10px #4f7fff55;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:8px;
-  align-items:center;
-  font-size:14px;
-  color:var(--muted);
-}
-.topbar strong{color:var(--text)}
-
-/* panel z przyciskami */
-.panel{
-  margin:12px 12px 0;
+/* panel z przyciskami (jak „buttons-frame” w DW, ale z różańcowym feel) */
+.top-panel{
   background:var(--panel);
-  border-radius:16px;
-  border:1px solid var(--ring);
-  padding:16px 14px 18px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:8px;
+  box-shadow:var(--shadow);
 }
 
-/* przyciski – styl z Różańca */
 .buttons-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:10px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(80px,1fr));
+  gap:8px;
+  justify-items:center;
+  align-items:center;
+  margin-top:4px;
 }
+
 .dk-btn{
-  flex:1 1 260px;
-  padding:10px 14px;
-  border-radius:12px;
-  border:1px solid var(--ring);
-  background:var(--panel-2);
-  color:var(--text);
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid var(--accent);
+  background:transparent;
+  color:#fff;
+  font-weight:600;
+  font-size:.9rem;
   cursor:pointer;
-  font-weight:700;
-  text-align:center;
-  box-shadow:0 2px 8px #0004;
-  transition:box-shadow .2s, transform .15s, background .2s;
+  transition:all .25s ease;
+  width:100%;
 }
 .dk-btn span{
   display:block;
-  font-size:13px;
+  font-size:.78rem;
   color:var(--muted);
-  margin-top:3px;
+  margin-top:2px;
 }
-.dk-btn:hover{
-  transform:translateY(-1px);
-  box-shadow:0 4px 14px #0006;
-  background:var(--soft);
-}
+.dk-btn:hover,
 .dk-btn.active{
-  box-shadow:0 0 0 3px #4f7fff33,0 0 18px 2px var(--accent-2);
+  background:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 3px 10px rgba(74,140,255,.4);
 }
 
 /* kontener na treść DK */
 .dk-container{
-  margin:12px 12px 10px;
+  margin-top:24px;
   background:var(--panel);
-  border-radius:16px;
-  border:1px solid var(--ring);
-  padding:14px 14px 18px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px 12px 16px;
   max-height:70vh;
   overflow-y:auto;
 }
+
 .dk-set{display:none;}
 .dk-set.active{display:block;}
 
 .dk-title{
   text-align:center;
   font-family:'Playfair Display',serif;
-  font-size:26px;
+  font-size:24px;
   font-weight:800;
   margin:4px 0 2px;
 }
@@ -144,7 +134,7 @@ header.book small{
   margin-bottom:12px;
 }
 
-/* pojedyncza stacja – styl DW */
+/* pojedyncza stacja */
 .stacja{
   background:var(--panel-2);
   border-radius:16px;
@@ -190,40 +180,50 @@ header.book small{
 }
 .after-prayers p{margin:2px 0;}
 
+/* stopka jak w DW */
 footer{
-  margin:0 12px 4px;
   background:var(--panel);
-  border:1px solid var(--ring);
-  border-radius:14px;
-  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:12px;
   text-align:center;
-  padding:14px 10px 16px;
-  box-shadow:0 6px 16px #0003;
-  font-size:13px;
+  color:var(--ink);
+  padding:20px;
+  margin-top:24px;
+  font-size:.95rem;
 }
-footer .fmuted{display:block;color:var(--muted);font-size:12px;margin-top:4px}
-@media(max-width:600px){
-  .panel,.dk-container,footer{margin:10px 8px}
-  .dk-btn{flex:1 1 100%}
+footer a{
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:600;
+}
+footer a:hover{color:var(--accent-2);}
+
+/* MOBILE = te same proporcje co Droga Wiary */
+@media(max-width:700px){
+  body{padding:8px;}
+  .wrap{padding:8px;}
+  .buttons-grid{grid-template-columns:repeat(2,1fr);}
+  .dk-btn{width:90%;}
+  .dk-container{
+    margin-left:-2px;
+    margin-right:-2px;
+    border-radius:12px;
+    padding:16px 12px 18px;
+    max-height:none; /* na telefonie nie przycinamy wysokości */
+  }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="book">
-    Droga Krzyżowa
+  <header class="book">Droga Krzyżowa
     <small>Wybierz jedno z rozważań</small>
   </header>
 
-  <div class="topbar">
-    <span><strong>Wskazówka:</strong> wszystkie wersje mają te same stacje, ale inny język i klimat rozważań.</span>
-  </div>
-
-  <!-- PANEL STARTOWY Z PRZYCISKAMI -->
-  <section class="panel">
-    <p style="margin:0 0 4px;font-size:14px;color:var(--muted);">
-      Wybierz jedno z rozważań. Poniżej na tej samej stronie otworzy się wybrana Droga Krzyżowa.
+  <section class="top-panel">
+    <p style="margin:0 0 4px;font-size:.9rem;color:var(--muted);">
+      Kliknij wybrane rozważania. Poniżej na tej samej stronie otworzy się odpowiednia Droga Krzyżowa.
     </p>
     <div class="buttons-grid">
       <button class="dk-btn" data-dk="1">
@@ -232,30 +232,29 @@ footer .fmuted{display:block;color:var(--muted);font-size:12px;margin-top:4px}
       </button>
       <button class="dk-btn" data-dk="2">
         Droga Krzyżowa 2
-        <span>Rozważania dla młodych</span>
+        <span>Dla młodych</span>
       </button>
       <button class="dk-btn" data-dk="3">
         Droga Krzyżowa 3
-        <span>Miłosierdzie i przebaczenie</span>
+        <span>O Miłosierdziu</span>
       </button>
       <button class="dk-btn" data-dk="4">
         Droga Krzyżowa 4
-        <span>Razem z Maryją</span>
+        <span>Z Maryją</span>
       </button>
       <button class="dk-btn" data-dk="5">
         Droga Krzyżowa 5
-        <span>Pokuta i nawrócenie</span>
+        <span>Pokutna</span>
       </button>
     </div>
   </section>
 
-  <!-- KONTENER NA TREŚĆ DRÓG KRZYŻOWYCH -->
   <section class="dk-container">
 
     <!-- DK 1 -->
     <div class="dk-set" data-dk="1">
       <div class="dk-title">Droga Krzyżowa</div>
-      <div class="dk-subtitle">Rozważania: <strong>(tu wpisz czyje — np. „klasyczne parafialne”)</strong></div>
+      <div class="dk-subtitle">Rozważania: <strong>(tu wpisz czyje)</strong></div>
 
       <div class="stacja">
         <div class="numer">I</div>
@@ -289,57 +288,38 @@ footer .fmuted{display:block;color:var(--muted);font-size:12px;margin-top:4px}
         </div>
       </div>
 
-      <!-- TU DODAJESZ III–XIV STACJĘ TAK JAK DOTYCHCZAS -->
+      <!-- tu dopiszesz III–XIV stację jak miałeś u Groka -->
     </div>
 
-    <!-- DK 2 -->
+    <!-- DK 2–5: szablony do wypełnienia -->
     <div class="dk-set" data-dk="2">
       <div class="dk-title">Droga Krzyżowa</div>
-      <div class="dk-subtitle">Rozważania: <strong>(tu np. „dla młodych”)</strong></div>
-
-      <!-- skopiuj stacje z DK1 i zmieniaj tekst rozważań -->
-      <div class="stacja">
-        <div class="numer">I</div>
-        <div class="tytul">Jezus na śmierć skazany</div>
-        <div class="modlitwa">Kłaniamy Ci się, Panie Jezu Chryste, i błogosławimy Tobie.</div>
-        <div class="refren">Żeś przez Krzyż i Mękę swoją świat odkupić raczył.</div>
-        <div class="rozważanie">
-          (Tu wstawisz wersję rozważań „dla młodych”…)
-        </div>
-        <div class="after-prayers">
-          <p><strong>Ojcze nasz…</strong></p>
-          <p><strong>Zdrowaś Maryjo…</strong></p>
-          <p><strong>Któryś za nas cierpiał rany, Jezu Chryste, zmiłuj się nad nami.</strong></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- DK 3 -->
-    <div class="dk-set" data-dk="3">
-      <div class="dk-title">Droga Krzyżowa</div>
-      <div class="dk-subtitle">Rozważania: <strong>(Miłosierdzie)</strong></div>
+      <div class="dk-subtitle">Rozważania: <strong>(dla młodych)</strong></div>
       <!-- wkleisz swoje stacje -->
     </div>
 
-    <!-- DK 4 -->
+    <div class="dk-set" data-dk="3">
+      <div class="dk-title">Droga Krzyżowa</div>
+      <div class="dk-subtitle">Rozważania: <strong>(o Miłosierdziu)</strong></div>
+    </div>
+
     <div class="dk-set" data-dk="4">
       <div class="dk-title">Droga Krzyżowa</div>
       <div class="dk-subtitle">Rozważania: <strong>(z Maryją)</strong></div>
-      <!-- wkleisz swoje stacje -->
     </div>
 
-    <!-- DK 5 -->
     <div class="dk-set" data-dk="5">
       <div class="dk-title">Droga Krzyżowa</div>
       <div class="dk-subtitle">Rozważania: <strong>(pokutne)</strong></div>
-      <!-- wkleisz swoje stacje -->
     </div>
 
   </section>
 
   <footer>
-    <div>„Droga Krzyżowa — Droga Wiary” © 2025</div>
-    <span class="fmuted">Jedna strona, pięć dróg — wybierz tę, której dziś potrzebujesz.</span>
+    Droga Krzyżowa — moduł Drogi Wiary © 2025<br>
+    <a href="https://drogawiary.github.io/" target="_blank" rel="noopener">
+      Otwórz stronę główną Drogi Wiary
+    </a>
   </footer>
 
 </div>
@@ -350,24 +330,17 @@ footer .fmuted{display:block;color:var(--muted);font-size:12px;margin-top:4px}
   const sets = document.querySelectorAll('.dk-set');
 
   function showSet(id){
-    sets.forEach(s=>{
-      s.classList.toggle('active', s.dataset.dk === id);
-    });
-    btns.forEach(b=>{
-      b.classList.toggle('active', b.dataset.dk === id);
-    });
+    sets.forEach(s=>s.classList.toggle('active', s.dataset.dk===id));
+    btns.forEach(b=>b.classList.toggle('active', b.dataset.dk===id));
   }
 
   btns.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      showSet(btn.dataset.dk);
-    });
+    btn.addEventListener('click', ()=>{ showSet(btn.dataset.dk); });
   });
 
-  // domyślnie nic nie wybrane – albo odkomentuj, żeby startować od 1:
+  // startowo nic lub np. pierwsza:
   // showSet('1');
 })();
 </script>
-
 </body>
 </html>

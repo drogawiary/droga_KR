@@ -63,7 +63,7 @@ header.book small{
   margin-top:6px;
 }
 
-/* panel z przyciskami (jak „buttons-frame” w DW, ale z różańcowym feel) */
+/* panel z przyciskami */
 .top-panel{
   background:var(--panel);
   border:1px solid var(--border);
@@ -180,6 +180,20 @@ header.book small{
 }
 .after-prayers p{margin:2px 0;}
 
+/* ⬇️ NOWY WĄSKI BANEREK Z WSTĘPEM */
+.intro-bar{
+  margin-top:16px;
+  margin-bottom:8px;
+  padding:10px 14px;
+  border-radius:12px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  font-size:.9rem;
+  color:var(--muted);
+  line-height:1.5;
+  text-align:center;
+}
+
 /* stopka jak w DW */
 footer{
   background:var(--panel);
@@ -198,7 +212,7 @@ footer a{
 }
 footer a:hover{color:var(--accent-2);}
 
-/* MOBILE = te same proporcje co Droga Wiary */
+/* MOBILE */
 @media(max-width:700px){
   body{padding:8px;}
   .wrap{padding:8px;}
@@ -209,7 +223,7 @@ footer a:hover{color:var(--accent-2);}
     margin-right:-2px;
     border-radius:12px;
     padding:16px 12px 18px;
-    max-height:none; /* na telefonie nie przycinamy wysokości */
+    max-height:none;
   }
 }
 </style>
@@ -248,6 +262,7 @@ footer a:hover{color:var(--accent-2);}
   </section>
 
   <section class="dk-container">
+
 
 <div class="dk-set" data-dk="1">
   <div class="dk-title">Droga Krzyżowa</div>
@@ -840,6 +855,16 @@ footer a:hover{color:var(--accent-2);}
 
   </section>
 
+  <!-- ⬇️ NOWY WĄSKI BANEREK PRZED STOPKĄ -->
+  <div class="intro-bar">
+    Początkiem tego nabożeństwa był zwyczaj odwiedzania w Jerozolimie miejsc,
+    na których cierpiał i umarł nasz Pan, Jezus Chrystus. Odprawiając Drogę
+    Krzyżową należy przechodzić kolejno obok tak zwanych stacji, które
+    przypominają nam fragmenty męki Chrystusowej, i rozważać Mękę Zbawiciela.
+    Rozważanie można przeprowadzać własnymi słowami, również myślnie, można
+    też korzystać z gotowych tekstów.
+  </div>
+
   <footer>
     <div>„Droga Krzyżowa” © 2025</div>
     <a href="https://drogawiary.github.io/" rel="noopener">Strona --> drogawiary@wp.pl</a>
@@ -861,7 +886,7 @@ footer a:hover{color:var(--accent-2);}
     btn.addEventListener('click', ()=>{ showSet(btn.dataset.dk); });
   });
 
-  // startowo nic lub np. pierwsza:
+  // startowo np. pierwsza:
   // showSet('1');
 })();
 </script>
